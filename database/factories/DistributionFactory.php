@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Enums\PriceSource;
+use App\Models\Distribution;
 use App\Models\Product;
 use App\Models\Reseller;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -10,7 +11,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * Raw rows only; real distributions go through DistributionService.
  *
- * @extends Factory<\App\Models\Distribution>
+ * @extends Factory<Distribution>
  */
 class DistributionFactory extends Factory
 {

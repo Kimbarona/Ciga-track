@@ -2,11 +2,12 @@
 
 namespace Database\Factories;
 
+use App\Models\Expense;
 use App\Models\ExpenseCategory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<\App\Models\Expense>
+ * @extends Factory<Expense>
  */
 class ExpenseFactory extends Factory
 {

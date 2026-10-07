@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enums\RemittanceMode;
 use App\Enums\RemittanceStatus;
+use Database\Factories\RemittanceFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -16,7 +17,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  */
 class Remittance extends Model
 {
-    /** @use HasFactory<\Database\Factories\RemittanceFactory> */
+    /** @use HasFactory<RemittanceFactory> */
     use HasFactory, LogsActivity;
 
     protected $fillable = [

@@ -2,11 +2,12 @@
 
 namespace Database\Factories;
 
+use App\Models\PriceRule;
 use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<\App\Models\PriceRule>
+ * @extends Factory<PriceRule>
  */
 class PriceRuleFactory extends Factory
 {

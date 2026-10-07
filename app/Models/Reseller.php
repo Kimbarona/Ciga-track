@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\ResellerType;
+use Database\Factories\ResellerFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -13,7 +14,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 
 class Reseller extends Model
 {
-    /** @use HasFactory<\Database\Factories\ResellerFactory> */
+    /** @use HasFactory<ResellerFactory> */
     use HasFactory, LogsActivity, SoftDeletes;
 
     protected $fillable = ['name', 'contact', 'location', 'type', 'is_active', 'notes'];

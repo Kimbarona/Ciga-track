@@ -3,10 +3,11 @@
 namespace Database\Factories;
 
 use App\Enums\ResellerType;
+use App\Models\Reseller;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<\App\Models\Reseller>
+ * @extends Factory<Reseller>
  */
 class ResellerFactory extends Factory
 {

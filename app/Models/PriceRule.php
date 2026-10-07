@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Database\Factories\PriceRuleFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -18,7 +19,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  */
 class PriceRule extends Model
 {
-    /** @use HasFactory<\Database\Factories\PriceRuleFactory> */
+    /** @use HasFactory<PriceRuleFactory> */
     use HasFactory, LogsActivity;
 
     protected $fillable = ['product_id', 'reseller_id', 'effective_date', 'reseller_price', 'retail_price', 'notes'];

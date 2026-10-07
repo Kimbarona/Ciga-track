@@ -3,13 +3,14 @@
 namespace App\Models\Concerns;
 
 use App\Models\User;
+use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Transactions are never deleted; they are voided with a reason instead.
  *
- * @property \Carbon\CarbonImmutable|null $voided_at
+ * @property CarbonImmutable|null $voided_at
  * @property string|null $void_reason
  * @property int|null $voided_by
  */

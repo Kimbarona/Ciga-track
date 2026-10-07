@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enums\PriceSource;
 use App\Models\Concerns\Voidable;
+use Database\Factories\DistributionFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -16,7 +17,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  */
 class Distribution extends Model
 {
-    /** @use HasFactory<\Database\Factories\DistributionFactory> */
+    /** @use HasFactory<DistributionFactory> */
     use HasFactory, LogsActivity, Voidable;
 
     protected $fillable = [

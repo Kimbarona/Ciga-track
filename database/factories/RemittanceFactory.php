@@ -4,11 +4,12 @@ namespace Database\Factories;
 
 use App\Enums\RemittanceMode;
 use App\Enums\RemittanceStatus;
+use App\Models\Remittance;
 use App\Models\Reseller;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<\App\Models\Remittance>
+ * @extends Factory<Remittance>
  */
 class RemittanceFactory extends Factory
 {
