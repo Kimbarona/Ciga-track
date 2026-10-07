@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Distribution;
 use App\Models\Product;
 use App\Models\Purchase;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Illuminate\Validation\ValidationException;
 
@@ -35,6 +36,19 @@ class StockService
         return Product::withTrashed()->pluck('id')->mapWithKeys(fn (int $id) => [
             $id => (int) ($purchased[$id] ?? 0) - (int) ($distributed[$id] ?? 0),
         ]);
+    }
+
+    /**
+     * Adds a current_stock column to a product query (for sorting / filtering in SQL).
+     */
+    public function withStock(Builder $query): Builder
+    {
+        $purchased = Purchase::query()->notVoided()->whereColumn('purchases.product_id', 'products.id')->selectRaw('COALESCE(SUM(qty), 0)');
+        $distributed = Distribution::query()->notVoided()->whereColumn('distributions.product_id', 'products.id')->selectRaw('COALESCE(SUM(qty), 0)');
+
+        return $query
+            ->select('products.*')
+            ->selectRaw('(('.$purchased->toRawSql().') - ('.$distributed->toRawSql().')) as current_stock');
     }
 
     public function isLowStock(Product $product, ?int $stock = null): bool

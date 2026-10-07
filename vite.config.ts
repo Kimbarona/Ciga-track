@@ -7,7 +7,13 @@ import { defineConfig } from 'vite';
 export default defineConfig({
     plugins: [
         laravel({
-            input: ['resources/css/app.css', 'resources/js/app.tsx'],
+            input: [
+                // React staff app
+                'resources/css/app.css',
+                'resources/js/app.tsx',
+                // Filament admin theme (separate Tailwind build)
+                'resources/css/filament/admin/theme.css',
+            ],
             ssr: 'resources/js/ssr.tsx',
             refresh: true,
         }),
