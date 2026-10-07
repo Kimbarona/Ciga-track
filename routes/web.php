@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Staff\DistributionController;
 use App\Http\Controllers\Staff\ExpenseController;
 use App\Http\Controllers\Staff\HomeController;
@@ -47,5 +48,17 @@ Route::middleware(['auth', 'password.changed'])->group(function () {
     Route::get('lookup/price', [PreviewController::class, 'price'])->name('lookup.price');
     Route::get('lookup/resellers/{reseller}/balance', [PreviewController::class, 'balance'])->name('lookup.balance');
 });
+
+/*
+| Admin report files (print / PDF / Excel). The report screen itself is a Filament page.
+*/
+Route::middleware(['auth', 'password.changed', 'can:view-reports'])
+    ->prefix('admin/report-files')
+    ->name('admin.reports.')
+    ->group(function () {
+        Route::get('statement/{reseller}', [ReportController::class, 'statement'])->name('statement')->withTrashed();
+        Route::get('profit-and-loss', [ReportController::class, 'profitAndLoss'])->name('pnl');
+        Route::get('stock-movement', [ReportController::class, 'stockMovement'])->name('stock');
+    });
 
 require __DIR__.'/settings.php';
