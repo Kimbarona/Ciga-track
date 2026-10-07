@@ -26,6 +26,14 @@ abstract class TestCase extends BaseTestCase
         return $app;
     }
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        // Tests never depend on built front-end assets.
+        $this->withoutVite();
+    }
+
     protected function skipUnlessFortifyFeature(string $feature, ?string $message = null): void
     {
         if (! Features::enabled($feature)) {

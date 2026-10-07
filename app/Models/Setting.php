@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Cache;
 class Setting extends Model
 {
     public const DEFAULTS = [
-        'business_name' => 'Ream Business',
+        'business_name' => '',
         'business_address' => '',
         'business_contact' => '',
         'default_reorder_level' => '5',
@@ -24,6 +24,14 @@ class Setting extends Model
         $all = Cache::rememberForever('app-settings', fn () => static::query()->pluck('value', 'key')->all());
 
         return $all[$key] ?? $default ?? (self::DEFAULTS[$key] ?? null);
+    }
+
+    /**
+     * Business name shown in both apps; falls back to APP_NAME until set.
+     */
+    public static function businessName(): string
+    {
+        return filled($name = static::get('business_name')) ? $name : (string) config('app.name');
     }
 
     public static function set(string $key, ?string $value): void

@@ -91,7 +91,7 @@ class AdminPanelProvider extends PanelProvider
     private function brandName(): string
     {
         try {
-            return Schema::hasTable('settings') ? (string) Setting::get('business_name') : config('app.name');
+            return Schema::hasTable('settings') ? Setting::businessName() : config('app.name');
         } catch (\Throwable) {
             return config('app.name');
         }

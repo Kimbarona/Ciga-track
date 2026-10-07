@@ -46,7 +46,10 @@ class AppSettings extends Page
 
     public function mount(): void
     {
-        $this->form->fill(collect(Setting::DEFAULTS)->mapWithKeys(fn ($default, $key) => [$key => Setting::get($key)])->all());
+        $this->form->fill([
+            ...collect(Setting::DEFAULTS)->mapWithKeys(fn ($default, $key) => [$key => Setting::get($key)])->all(),
+            'business_name' => Setting::businessName(),
+        ]);
     }
 
     public function form(Schema $schema): Schema

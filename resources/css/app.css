@@ -2,14 +2,19 @@
 
 @import 'tw-animate-css';
 
+/* Only scan the React app — the Filament admin has its own theme build. */
 @source '../views/app.blade.php';
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 
 @custom-variant dark (&:is(.dark *));
 
+/*
+ * Ream — "neat ledger" theme
+ * Deep navy #1F3864 · warm amber #E8A33D · off-white paper #FAF8F3
+ */
 @theme {
     --font-sans:
-        'Instrument Sans', ui-sans-serif, system-ui, sans-serif,
+        'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif,
         'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
         'Noto Color Emoji';
 
@@ -41,6 +46,20 @@
     --color-destructive: var(--destructive);
     --color-destructive-foreground: var(--destructive-foreground);
 
+    /* Brand highlight (amber) for CTAs and emphasis */
+    --color-highlight: var(--highlight);
+    --color-highlight-foreground: var(--highlight-foreground);
+    --color-highlight-soft: var(--highlight-soft);
+
+    /* Status colors — used only for status */
+    --color-success: var(--success);
+    --color-success-soft: var(--success-soft);
+    --color-danger: var(--danger);
+    --color-danger-soft: var(--danger-soft);
+    --color-warning: var(--warning);
+    --color-warning-soft: var(--warning-soft);
+    --color-neutral-soft: var(--neutral-soft);
+
     --color-border: var(--border);
     --color-input: var(--input);
     --color-ring: var(--ring);
@@ -62,74 +81,100 @@
 }
 
 :root {
-    --background: oklch(1 0 0);
-    --foreground: oklch(0.145 0 0);
-    --card: oklch(1 0 0);
-    --card-foreground: oklch(0.145 0 0);
-    --popover: oklch(1 0 0);
-    --popover-foreground: oklch(0.145 0 0);
-    --primary: oklch(0.205 0 0);
-    --primary-foreground: oklch(0.985 0 0);
-    --secondary: oklch(0.97 0 0);
-    --secondary-foreground: oklch(0.205 0 0);
-    --muted: oklch(0.97 0 0);
-    --muted-foreground: oklch(0.556 0 0);
-    --accent: oklch(0.97 0 0);
-    --accent-foreground: oklch(0.205 0 0);
-    --destructive: oklch(0.577 0.245 27.325);
-    --destructive-foreground: oklch(0.577 0.245 27.325);
-    --border: oklch(0.922 0 0);
-    --input: oklch(0.922 0 0);
-    --ring: oklch(0.87 0 0);
-    --chart-1: oklch(0.646 0.222 41.116);
-    --chart-2: oklch(0.6 0.118 184.704);
-    --chart-3: oklch(0.398 0.07 227.392);
-    --chart-4: oklch(0.828 0.189 84.429);
-    --chart-5: oklch(0.769 0.188 70.08);
-    --radius: 0.625rem;
-    --sidebar: oklch(0.985 0 0);
-    --sidebar-foreground: oklch(0.145 0 0);
-    --sidebar-primary: oklch(0.205 0 0);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.97 0 0);
-    --sidebar-accent-foreground: oklch(0.205 0 0);
-    --sidebar-border: oklch(0.922 0 0);
-    --sidebar-ring: oklch(0.87 0 0);
+    --background: #faf8f3;
+    --foreground: #1b2236;
+    --card: #ffffff;
+    --card-foreground: #1b2236;
+    --popover: #ffffff;
+    --popover-foreground: #1b2236;
+    --primary: #1f3864;
+    --primary-foreground: #ffffff;
+    --secondary: #f1ede4;
+    --secondary-foreground: #1f3864;
+    --muted: #f3f0e9;
+    --muted-foreground: #6b6a66;
+    --accent: #f3efe6;
+    --accent-foreground: #1f3864;
+    --destructive: #c2410c;
+    --destructive-foreground: #c2410c;
+    --highlight: #e8a33d;
+    --highlight-foreground: #2a1d05;
+    --highlight-soft: #fbefd9;
+    --success: #1f7a4d;
+    --success-soft: #e3f2e9;
+    --danger: #b42318;
+    --danger-soft: #fbe7e5;
+    --warning: #a8650b;
+    --warning-soft: #fbefd9;
+    --neutral-soft: #eceae4;
+    --border: #e7e2d6;
+    --input: #ddd6c7;
+    --ring: #e8a33d;
+    --chart-1: #1f3864;
+    --chart-2: #e8a33d;
+    --chart-3: #4f6d9a;
+    --chart-4: #c9853a;
+    --chart-5: #8ea4c8;
+    --radius: 0.75rem;
+    --sidebar: #f4f1e9;
+    --sidebar-foreground: #1b2236;
+    --sidebar-primary: #1f3864;
+    --sidebar-primary-foreground: #ffffff;
+    --sidebar-accent: #ebe6da;
+    --sidebar-accent-foreground: #1f3864;
+    --sidebar-border: #e3ddd0;
+    --sidebar-ring: #e8a33d;
 }
 
 .dark {
-    --background: oklch(0.145 0 0);
-    --foreground: oklch(0.985 0 0);
-    --card: oklch(0.145 0 0);
-    --card-foreground: oklch(0.985 0 0);
-    --popover: oklch(0.145 0 0);
-    --popover-foreground: oklch(0.985 0 0);
-    --primary: oklch(0.985 0 0);
-    --primary-foreground: oklch(0.205 0 0);
-    --secondary: oklch(0.269 0 0);
-    --secondary-foreground: oklch(0.985 0 0);
-    --muted: oklch(0.269 0 0);
-    --muted-foreground: oklch(0.708 0 0);
-    --accent: oklch(0.269 0 0);
-    --accent-foreground: oklch(0.985 0 0);
-    --destructive: oklch(0.396 0.141 25.723);
-    --destructive-foreground: oklch(0.637 0.237 25.331);
-    --border: oklch(0.269 0 0);
-    --input: oklch(0.269 0 0);
-    --ring: oklch(0.439 0 0);
-    --chart-1: oklch(0.488 0.243 264.376);
-    --chart-2: oklch(0.696 0.17 162.48);
-    --chart-3: oklch(0.769 0.188 70.08);
-    --chart-4: oklch(0.627 0.265 303.9);
-    --chart-5: oklch(0.645 0.246 16.439);
-    --sidebar: oklch(0.205 0 0);
-    --sidebar-foreground: oklch(0.985 0 0);
-    --sidebar-primary: oklch(0.985 0 0);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.269 0 0);
-    --sidebar-accent-foreground: oklch(0.985 0 0);
-    --sidebar-border: oklch(0.269 0 0);
-    --sidebar-ring: oklch(0.439 0 0);
+    --background: #0e1320;
+    --foreground: #ece8df;
+    --card: #151c2c;
+    --card-foreground: #ece8df;
+    --popover: #151c2c;
+    --popover-foreground: #ece8df;
+    --primary: #9db4e0;
+    --primary-foreground: #0e1320;
+    --secondary: #1d2538;
+    --secondary-foreground: #ece8df;
+    --muted: #1b2234;
+    --muted-foreground: #a2a7b4;
+    --accent: #1f2840;
+    --accent-foreground: #ece8df;
+    --destructive: #f97066;
+    --destructive-foreground: #f97066;
+    --highlight: #e8a33d;
+    --highlight-foreground: #1b1203;
+    --highlight-soft: #33270f;
+    --success: #4ade80;
+    --success-soft: #12301f;
+    --danger: #f97066;
+    --danger-soft: #3a1714;
+    --warning: #f0b45a;
+    --warning-soft: #33270f;
+    --neutral-soft: #232b3e;
+    --border: #252e44;
+    --input: #2e3850;
+    --ring: #e8a33d;
+    --chart-1: #9db4e0;
+    --chart-2: #e8a33d;
+    --chart-3: #6b8bc0;
+    --chart-4: #c9853a;
+    --chart-5: #4f6d9a;
+    --sidebar: #111827;
+    --sidebar-foreground: #ece8df;
+    --sidebar-primary: #e8a33d;
+    --sidebar-primary-foreground: #1b1203;
+    --sidebar-accent: #1d2538;
+    --sidebar-accent-foreground: #ece8df;
+    --sidebar-border: #252e44;
+    --sidebar-ring: #e8a33d;
+}
+
+/* Money and qty columns line up like a ledger */
+@utility num {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: 'tnum' 1;
 }
 
 @layer base {
@@ -139,5 +184,15 @@
 
     body {
         @apply bg-background text-foreground;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    input[type='date']::-webkit-calendar-picker-indicator {
+        cursor: pointer;
+        opacity: 0.6;
+    }
+
+    .dark input[type='date']::-webkit-calendar-picker-indicator {
+        filter: invert(1);
     }
 }

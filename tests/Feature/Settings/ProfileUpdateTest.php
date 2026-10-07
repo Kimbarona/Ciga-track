@@ -14,7 +14,7 @@ test('profile information can be updated', function () {
     $this->actingAs($user)
         ->patch(route('profile.update'), ['name' => 'Test User', 'email' => 'test@example.com'])
         ->assertSessionHasNoErrors()
-        ->assertRedirect(route('profile.edit'));
+        ->assertRedirect();
 
     $user->refresh();
 

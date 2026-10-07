@@ -1,6 +1,5 @@
-import { Link } from '@inertiajs/react';
-import AppLogoIcon from '@/components/app-logo-icon';
-import { home } from '@/routes';
+import { usePage } from '@inertiajs/react';
+import { AppMark } from '@/layouts/staff-layout';
 import type { AuthLayoutProps } from '@/types';
 
 export default function AuthSimpleLayout({
@@ -8,30 +7,38 @@ export default function AuthSimpleLayout({
     title,
     description,
 }: AuthLayoutProps) {
-    return (
-        <div className="flex min-h-svh flex-col items-center justify-center gap-6 bg-background p-6 md:p-10">
-            <div className="w-full max-w-sm">
-                <div className="flex flex-col gap-8">
-                    <div className="flex flex-col items-center gap-4">
-                        <Link
-                            href={home()}
-                            className="flex flex-col items-center gap-2 font-medium"
-                        >
-                            <div className="mb-1 flex h-9 w-9 items-center justify-center rounded-md">
-                                <AppLogoIcon className="size-9 fill-current text-[var(--foreground)] dark:text-white" />
-                            </div>
-                            <span className="sr-only">{title}</span>
-                        </Link>
+    const { name } = usePage().props;
 
-                        <div className="space-y-2 text-center">
-                            <h1 className="text-xl font-medium">{title}</h1>
-                            <p className="text-center text-sm text-muted-foreground">
+    return (
+        <div className="relative flex min-h-svh flex-col items-center justify-center bg-background p-6 md:p-10">
+            {/* faint ledger lines */}
+            <div
+                aria-hidden
+                className="pointer-events-none absolute inset-0 opacity-[0.35] dark:opacity-[0.08]"
+                style={{
+                    backgroundImage:
+                        'repeating-linear-gradient(to bottom, transparent 0 31px, var(--border) 31px 32px)',
+                }}
+            />
+            <div className="relative w-full max-w-sm">
+                <div className="flex flex-col gap-8 rounded-3xl border border-border bg-card p-8 shadow-xl shadow-primary/5">
+                    <div className="flex flex-col items-center gap-4">
+                        <AppMark className="size-14 rounded-2xl" />
+                        <div className="text-center">
+                            <div className="text-sm font-semibold text-highlight">
+                                {name}
+                            </div>
+                            <h1 className="mt-1 text-xl font-bold">{title}</h1>
+                            <p className="mt-1 text-center text-sm text-muted-foreground">
                                 {description}
                             </p>
                         </div>
                     </div>
                     {children}
                 </div>
+                <p className="mt-6 text-center text-xs text-muted-foreground">
+                    Internal tool · accounts are created by an admin
+                </p>
             </div>
         </div>
     );

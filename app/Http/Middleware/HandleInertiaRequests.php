@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -29,17 +30,42 @@ class HandleInertiaRequests extends Middleware
     /**
      * Define the props that are shared by default.
      *
+     * Only role-appropriate data is shared — staff never receive cost or profit figures.
+     *
      * @see https://inertiajs.com/shared-data
      *
      * @return array<string, mixed>
      */
     public function share(Request $request): array
     {
+        $user = $request->user();
+
         return [
             ...parent::share($request),
-            'name' => config('app.name'),
+            'name' => fn () => Setting::businessName(),
             'auth' => [
-                'user' => $request->user(),
+                'user' => $user ? [
+                    'id' => $user->id,
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'role' => $user->role->value,
+                    'role_label' => $user->role->getLabel(),
+                    'must_change_password' => $user->must_change_password,
+                    'two_factor_enabled' => $user->two_factor_confirmed_at !== null,
+                    'email_verified_at' => $user->email_verified_at,
+                    'created_at' => $user->created_at,
+                    'updated_at' => $user->updated_at,
+                ] : null,
+                'can' => [
+                    'accessAdmin' => (bool) $user?->isAdmin(),
+                    'viewFinancials' => (bool) $user?->can('view-financials'),
+                    'overridePrice' => (bool) $user?->isAdmin(),
+                ],
+            ],
+            'flash' => [
+                'success' => fn () => $request->session()->get('success'),
+                'error' => fn () => $request->session()->get('error'),
+                'warning' => fn () => $request->session()->get('warning'),
             ],
             'sidebarOpen' => ! $request->hasCookie('sidebar_state') || $request->cookie('sidebar_state') === 'true',
         ];

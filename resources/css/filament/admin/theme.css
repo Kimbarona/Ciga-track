@@ -2,3 +2,14 @@
 
 @source '../../../../app/Filament/**/*';
 @source '../../../../resources/views/filament/**/*';
+
+/* Match the staff app: paper background and ledger-style numbers. */
+.fi-body:not(.dark *) {
+    background-color: #faf8f3;
+}
+
+.fi-ta-text-item,
+.fi-wi-stats-overview-stat-value,
+.fi-ta-summary-row {
+    font-variant-numeric: tabular-nums;
+}

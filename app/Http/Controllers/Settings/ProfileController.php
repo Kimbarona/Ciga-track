@@ -30,6 +30,6 @@ class ProfileController extends Controller
     {
         $request->user()->fill($request->validated())->save();
 
-        return to_route('profile.edit');
+        return back()->with('success', 'Profile saved.');
     }
 }

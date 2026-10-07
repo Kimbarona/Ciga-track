@@ -16,8 +16,8 @@ type Props = {
 export default function Login({ status }: Props) {
     return (
         <AuthLayout
-            title="Log in to your account"
-            description="Enter your email and password below to log in"
+            title="Welcome back"
+            description="Log in with the account your admin gave you."
         >
             <Head title="Log in" />
 
@@ -68,7 +68,7 @@ export default function Login({ status }: Props) {
 
                             <Button
                                 type="submit"
-                                className="mt-4 w-full"
+                                className="mt-2 h-12 w-full rounded-xl bg-highlight text-base font-bold text-highlight-foreground hover:bg-highlight/90"
                                 tabIndex={4}
                                 disabled={processing}
                                 data-test="login-button"
